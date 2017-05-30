@@ -21,8 +21,10 @@ import java.util.*;
 import static Main.Main.doofenseStage;
 
 public class MatchWindow implements Initializable {
+    //Кнопка-нажималка, созданная для ввода с клавиатуры
     @FXML
     private Button btnKey;
+    //Вывод счетчика на экран
     @FXML
     private Text timer;
     // Счетчик очков
@@ -45,29 +47,29 @@ public class MatchWindow implements Initializable {
     private List<Pane> listBunker = Arrays.asList(paneBunkerLeft, paneBunkerMiddle, paneBunkerRight);
     //Лист типов оружия
     private List<ImageView> listWeapons = Arrays.asList(
-            new ImageView(new Image("file:src\\Doofense\\ButtonLaser.png")),
-            new ImageView(new Image("file:src\\Doofense\\ButtonLaser.png")),
-            new ImageView(new Image("file:src\\Doofense\\ButtonLaser.png"))
+            new ImageView(new Image("file:src\\Resourses\\ButtonBlaster.png")),
+            new ImageView(new Image("file:src\\Resourses\\ButtonFlareGun.png")),
+            new ImageView(new Image("file:src\\Resourses\\ButtonLaser.png"))
     );
     //Лист типов противника
     private List<ImageView> listEnemy = Arrays.asList(
-            new ImageView(new Image("file:src\\Doofense\\Attacker-1.png")),
-            new ImageView(new Image("file:src\\Doofense\\Attacker-2.png")),
-            new ImageView(new Image("file:src\\Doofense\\Attacker-3.png"))
+            new ImageView(new Image("file:src\\Resourses\\EnemyAntiBlaster.png")),
+            new ImageView(new Image("file:src\\Resourses\\EnemyAntiFlareGun.png")),
+            new ImageView(new Image("file:src\\Resourses\\EnemyAntiLaser.png"))
     );
     //Контейнеры для здоровья
     private List<ImageView> listHitPoints = Arrays.asList(
-            new ImageView(new Image("file:src\\Doofense\\Defender.png")),
-            new ImageView(new Image("file:src\\Doofense\\Defender.png")),
-            new ImageView(new Image("file:src\\Doofense\\Defender.png")),
-            new ImageView(new Image("file:src\\Doofense\\Defender.png")),
-            new ImageView(new Image("file:src\\Doofense\\Defender.png"))
+            new ImageView(new Image("file:src\\Resourses\\Life.png")),
+            new ImageView(new Image("file:src\\Resourses\\Life.png")),
+            new ImageView(new Image("file:src\\Resourses\\Life.png")),
+            new ImageView(new Image("file:src\\Resourses\\Life.png")),
+            new ImageView(new Image("file:src\\Resourses\\Life.png"))
     );
-    //Счетчик очков
+    //Счетчик очков - глобальная переменная
     static int score = 0;
     //Счетчик здоровья
-    private int hitPoints = 5;
-    //Таймер
+    static int hitPoints = 5;
+    //Таймер (секунды)
     private int countdown = 30;
 
 
@@ -83,13 +85,12 @@ public class MatchWindow implements Initializable {
         initializeHitPoints();
         showHitPoints();
 
-        //Таймер
+        //Таймер:
         Timeline timeline = new Timeline(
                 new KeyFrame(
                         Duration.seconds(1), ae -> {
                             countdown--;
                             timer.setText(String.valueOf(countdown));
-
                         }
                 )
         );
@@ -114,6 +115,9 @@ public class MatchWindow implements Initializable {
                 if (event.getCode() == KeyCode.NUMPAD3 || event.getCode() == KeyCode.DIGIT3){
                     i = 2;
                 }
+                if (event.getCode() == KeyCode.ESCAPE){
+                    ending();
+                }
                 if (listEnemy.get(i).isDisable()){
                     score = score + 1;
                     countScore.setText(String.valueOf(score));
@@ -127,12 +131,10 @@ public class MatchWindow implements Initializable {
                 deleteEnemy();
                 showEnemy();
             } catch (ArrayIndexOutOfBoundsException ignored){}
-
-
         });
     }
 
-    //Убить противника
+    //Убить противника:
     private void deleteEnemy(){
         paneContorBunker.getChildren().remove(0);
         for (Pane pane: listBunker){
@@ -147,7 +149,7 @@ public class MatchWindow implements Initializable {
         }
     }
 
-    //Показать нового противника
+    //Показать нового противника:
     private void showEnemy(){
         try {
             int k = new Random().nextInt(3);
@@ -161,7 +163,7 @@ public class MatchWindow implements Initializable {
 
     }
 
-    //Инициализация "бункеров"
+    //Инициализация "бункеров":
     private void initializePaneEnemy(){
         int i = 20;
         for (Pane pane: listBunker){
@@ -172,7 +174,7 @@ public class MatchWindow implements Initializable {
         }
     }
 
-    //Инициалиация противников
+    //Инициалиация противников:
     private void initializeEnemy(){
         for (ImageView imageView: listEnemy){
             imageView.setFitHeight(70);
@@ -180,9 +182,9 @@ public class MatchWindow implements Initializable {
         }
     }
 
-    //Инициализация оружия
+    //Инициализация оружия:
     private void initializeWeapon(){
-        int i = 20;
+        int i = 7;
         for (ImageView imageView: listWeapons){
             imageView.setFitHeight(70);
             imageView.setFitWidth(70);
@@ -192,14 +194,14 @@ public class MatchWindow implements Initializable {
         }
     }
 
-    //Показать оружия
+    //Показать оружия:
     private void showWeapons(){
         paneControlWeapons.getChildren().addAll(listWeapons);
     }
 
-    //Инициалиция здоровья
+    //Инициалиция здоровья:
     private void initializeHitPoints(){
-        int i = 20;
+        int i = 10;
         for (ImageView imageView: listHitPoints){
             imageView.setFitHeight(20);
             imageView.setFitWidth(20);
@@ -209,17 +211,17 @@ public class MatchWindow implements Initializable {
         }
     }
 
-    //Показать здоровье
+    //Показать здоровье:
     private void showHitPoints(){
         paneControlHitPoints.getChildren().addAll(listHitPoints);
     }
 
-    //Потеря здоровья
+    //Потеря здоровья:
     private void loseHitPoint(Integer number){
         paneControlHitPoints.getChildren().remove(number - 1);
     }
 
-    //Огонь мышью
+    //Огонь мышью:
     private void shotMouse(){
         for (int i = 0; i < 3; i++){
             if (listWeapons.get(i).isHover()){

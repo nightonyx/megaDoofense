@@ -12,21 +12,25 @@
 
 <AnchorPane prefHeight="620.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Menu">
     <children>
-        <ImageView fitHeight="308.0" fitWidth="475.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../Doofense/Field.png" />
-            </image>
-        </ImageView>
-        <Button fx:id="buttonTapToPlay" defaultButton="true" layoutX="159.0" layoutY="459.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="144.0" text="Tap to Play">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Button>
-        <Button fx:id="buttonExit" layoutX="362.0" layoutY="14.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="86.0" text="Exit" />
-        <ImageView fitHeight="114.0" fitWidth="313.0" layoutX="106.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../Doofense/Headline.png" />
-            </image>
-        </ImageView>
+      <Pane maxHeight="620.0" maxWidth="360.0" minHeight="620.0" minWidth="360.0" prefHeight="620.0" prefWidth="360.0">
+         <children>
+              <ImageView fitHeight="620.0" fitWidth="377.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@../Resourses/Field.png" />
+                  </image>
+              </ImageView>
+              <ImageView fitHeight="114.0" fitWidth="313.0" layoutX="24.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@../Resourses/Headline.png" />
+                  </image>
+              </ImageView>
+              <Button fx:id="buttonTapToPlay" defaultButton="true" layoutX="108.0" layoutY="330.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="144.0" text="Tap to Play">
+                  <font>
+                      <Font size="20.0" />
+                  </font>
+              </Button>
+              <Button fx:id="buttonExit" cancelButton="true" layoutX="137.0" layoutY="439.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="86.0" text="Exit" />
+         </children>
+      </Pane>
     </children>
 </AnchorPane>

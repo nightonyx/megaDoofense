@@ -15,9 +15,9 @@ public class Main extends Application {
     @Override
     public void start(Stage unused) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../fxmlFiles/fxmlMenu.fxml"));
-        doofenseStage.getIcons().add(new Image("file:src\\Doofense\\Icon.png"));
+        doofenseStage.getIcons().add(new Image("file:src\\Resourses\\Icon.png"));
         doofenseStage.setResizable(false);
-        doofenseStage.setTitle("Doofense");
+        doofenseStage.setTitle("Resourses");
         doofenseStage.setScene(new Scene(root));
         doofenseStage.show();
     }
